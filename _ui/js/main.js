@@ -5,12 +5,12 @@ if (typeof window.NAMESPACE !== 'undefined') {
 }
 
 window.NAMESPACE = {
-	init:function() {
+	init: function () {
 		var self = this;
 
 	}
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
 	NAMESPACE.init();
 });
