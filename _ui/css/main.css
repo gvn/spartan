@@ -1,3 +1,7 @@
+/*	###########################################
+	Primitives & Resets
+	########################################### */
+	
 body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
 	padding: 0;
 	margin: 0;
@@ -7,13 +11,13 @@ body {
 	background: #fff;
 	color: #000;
 	font-size: 10px;
-	font-family: Helvetica,Arial,sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 { font-weight:bold; }
+h1,h2,h3,h4,h5,h6 { font-weight:900; }
 
-h1 { 
-	font-size: 10px; 
+h1 {
+	font-size: 10px;
 	line-height: 1em;
 }
 
@@ -22,59 +26,59 @@ h2 {
 	line-height: 1em;
 }
 
-h3 { 
-	font-size: 10px; 
+h3 {
+	font-size: 10px;
 	line-height: 1em;
 }
 
-h4 { 
-	font-size: 10px; 
+h4 {
+	font-size: 10px;
 	line-height: 1em;
 }
 
 h5 {
-	font-size: 10px; 
+	font-size: 10px;
 	line-height: 1em;
 }
 
 h6 {
-	font-size: 10px; 
+	font-size: 10px;
 	line-height: 1em;
 }
 
-p { 
-	font-size: 10px; 
+p {
+	font-size: 10px;
 	line-height: 1em;
 }
 
-address,caption,cite,code,dfn,th,var { 
-	font-style: normal; 
-	font-weight: normal; 
+address,caption,cite,code,dfn,th,var {
+	font-style: normal;
+	font-weight: normal;
 }
 
-ul,ol { 
-	list-style: none; 
+ul,ol {
+	list-style: none;
 }
 
-a { 
+a {
 	color: #000;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline; 
+	text-decoration: underline;
 }
 
-abbr,img { 
-	border: 0; 
+abbr,img {
+	border: 0;
 }
 
-strong { 
+strong {
 	font-weight: bold;
 }
 
 em {
-	font-style: italic; 
+	font-style: italic;
 }
 
 table {
@@ -86,59 +90,11 @@ caption,th,td {
 	font-weight: normal;
 }
 
-
-/*	-----------------------------------------------
-
-	Custom Primitives
-
-	----------------------------------------------- */
-
-
-div.hr { 
-	height: 1px;
-	border-top: 1px solid #000;
-	overflow: hidden;
-	clear: both;
-}
-	div.hr hr {
-		display: none;
-	}
-
-div.clear {
-	clear: both;
-	height: 1px;
-	overflow: hidden;	
-	margin-top: -1px;	
-}
-
-a.btn {
-	cursor: pointer;
-	display: block;
-	overflow: hidden;
-	position: relative;
-}
-	a.btn span {
-		left: -999999px;
-		position: absolute;
-		top: -999999px;
-	}
-
-/*	-----------------------------------------------
-
+/*	###########################################
 	Utility Classes
+	########################################### */
 
-	----------------------------------------------- */
-
-
-.left { 
-	float: left; 
-}
-.right { 
-	float: right; 
-}
-.hidden { 
-	display: none; 
-}
+.hidden { display: none; }
 
 .offscreen {
 	position: absolute;
@@ -147,44 +103,31 @@ a.btn {
 	top: -999999px;
 }
 
+.clear:before,
 .clear:after {
-	content: ".";
-	display: block;
-	clear: both;
-	height: 0px;
-	margin-top: -1px;
-	visibility: hidden;
+    content:"";
+    display:table;
+}
+
+.clear:after {
+    clear:both;
 }
 
 
-/*	-----------------------------------------------
-
+/*	###########################################
 	Chrome
-
-	----------------------------------------------- */
-
-div#header {
-	
-}
-
-div#content {
-	
-}
-
-div#footer {
-	
-}
-
-/*	-----------------------------------------------
-
-	Widgets
-
-	----------------------------------------------- */
+	########################################### */
 
 
 
-/*	-----------------------------------------------
+/*	###########################################
+	Components
+	########################################### */
 
-	Page Specific Styles
 
-	----------------------------------------------- */
+
+/*	###########################################
+	View Specific Styles
+	########################################### */
+
+
