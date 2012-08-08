@@ -1,4 +1,4 @@
-// TODO: Replace NAMESPACE with the site name in all caps
+// TODO: Replace NAMESPACE with something meaningful
 
 if (typeof window.NAMESPACE !== 'undefined') {
 	throw 'NAMESPACE already in use.';
