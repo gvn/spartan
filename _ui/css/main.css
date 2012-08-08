@@ -1,136 +1,122 @@
-/*	###########################################
-	Primitives & Resets
-	########################################### */
-	
+/*  ###########################################
+    Primitives & Resets
+    ########################################### */
+    
 body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 body {
-	background: #fff;
-	color: #000;
-	font-size: 10px;
-	font-family: Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #000;
+    font-size: 10px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6 { font-weight: 900; }
 
 h1 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 h2 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 h3 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 h4 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 h5 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 h6 {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 p {
-	font-size: 10px;
-	line-height: 1em;
+    font-size: 10px;
+    line-height: 1em;
 }
 
 address,caption,cite,code,dfn,th,var {
-	font-style: normal;
-	font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
 }
 
 ul,ol {
-	list-style: none;
+    list-style: none;
 }
 
 a {
-	color: #000;
-	text-decoration: none;
+    color: #000;
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 abbr, img {
-	border: 0;
+    border: 0;
 }
 
 strong {
-	font-weight: 900;
+    font-weight: 900;
 }
 
 em {
-	font-style: italic;
+    font-style: italic;
 }
 
 table {
-	border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 caption, th, td {
-	text-align: left;
-	font-weight: normal;
+    text-align: left;
+    font-weight: normal;
 }
 
-/*	###########################################
-	Utility Classes
-	########################################### */
+/*  ###########################################
+    Utility Classes
+    ########################################### */
 
 .hidden { display: none; }
 
 .offscreen {
-	position: absolute;
-	display: block;
-	left: -999999px;
-	top: -999999px;
+    position: absolute;
+    display: block;
+    left: -999999px;
+    top: -999999px;
 }
 
-/*
-	http://nicolasgallagher.com/micro-clearfix-hack/	
-*/
-
-.clear:before,
-.clear:after {
-    content:"";
-    display:table;
-}
-
-.clear:after {
-    clear:both;
-}
-
-/*	###########################################
-	Chrome
-	########################################### */
+/*  ###########################################
+    Chrome
+    ########################################### */
 
 
 
-/*	###########################################
-	Components
-	########################################### */
+/*  ###########################################
+    Components
+    ########################################### */
 
 
 
-/*	###########################################
-	View Specific Styles
-	########################################### */
+/*  ###########################################
+    View Specific Styles
+    ########################################### */
 
 
