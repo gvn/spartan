@@ -1,8 +1,6 @@
 /*global $: false, console: false */
 /*jslint browser: true, sloppy: true, forin: true, plusplus: true, maxerr: 50, indent: 4 */
 
-// TODO: Replace NAMESPACE with something meaningful
-
 if (typeof window.NAMESPACE !== 'undefined') {
     throw 'NAMESPACE already in use.';
 }
