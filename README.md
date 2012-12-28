@@ -1,5 +1,5 @@
 # Build Template
 
-Super-duper-lightweight starter template for a static web project.
+Über-light scaffold for client side web projects.
 
-Targeted toward modern browsers: WebKit, Firefox, IE9.
+Targeted toward modern browsers.
