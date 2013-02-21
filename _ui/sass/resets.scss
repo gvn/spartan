@@ -1,6 +1,4 @@
-/*  ###########################################
-    Primitives & Resets
-    ########################################### */
+// Primitives & Resets
     
 body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
     padding: 0;
@@ -89,34 +87,3 @@ caption, th, td {
     text-align: left;
     font-weight: normal;
 }
-
-/*  ###########################################
-    Utility Classes
-    ########################################### */
-
-.hidden { display: none; }
-
-.offscreen {
-    position: absolute;
-    display: block;
-    left: -999999px;
-    top: -999999px;
-}
-
-/*  ###########################################
-    Chrome
-    ########################################### */
-
-
-
-/*  ###########################################
-    Components
-    ########################################### */
-
-
-
-/*  ###########################################
-    View Specific Styles
-    ########################################### */
-
-

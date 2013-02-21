@@ -8,6 +8,8 @@ if (typeof window.NAMESPACE !== 'undefined') {
 window.NAMESPACE = {
     init: function () {
         var self = this;
+
+        
     }
 };
 
