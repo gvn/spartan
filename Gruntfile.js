@@ -25,14 +25,14 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
             },
             build: {
-                src: ['_frontend/js/main.js'],
-                dest: '_frontend/js/compiled.js'
+                src: ['_fe/js/main.js'],
+                dest: '_fe/js/compiled.js'
             }
         },
         sass: {
             dist: {
                 files: {
-                    '_frontend/css/compiled.css': '_frontend/sass/main.scss'
+                    '_fe/css/compiled.css': '_fe/sass/main.scss'
                 }
             },
             dev: {
@@ -41,25 +41,32 @@ module.exports = function (grunt) {
                     debugInfo: true
                 },
                 files: {
-                    '_frontend/css/compiled.debug.css': '_frontend/sass/main.scss'
+                    '_fe/css/compiled.debug.css': '_fe/sass/main.scss'
                 }
             }
         },
         cssmin: {
             compress: {
                 files: {
-                    "_frontend/css/compiled.css": ["_frontend/css/compiled.css"]
+                    "_fe/css/compiled.css": ["_fe/css/compiled.css"]
                 }
             }
         },
         watch: {
             js: {
-                files: ['_frontend/js/**/*.js', '!_frontend/js/compiled.js'],
+                files: ['_fe/js/**/*.js', '!_fe/js/compiled.js'],
                 tasks: ['uglify']
             },
             sass: {
-                files: ['_frontend/sass/**/*.scss'],
+                files: ['_fe/sass/**/*.scss'],
                 tasks: ['sass:dev']
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    port: 8000
+                }
             }
         }
     });
@@ -68,8 +75,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('default', ['uglify', 'sass:dev']);
+    grunt.registerTask('default', ['connect', 'watch']);
     grunt.registerTask('deploy', ['uglify', 'sass', 'cssmin']);
 
 };
