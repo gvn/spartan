@@ -25,14 +25,14 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
             },
             build: {
-                src: ['_ui/js/main.js'],
-                dest: '_ui/js/compiled.js'
+                src: ['_frontend/js/main.js'],
+                dest: '_frontend/js/compiled.js'
             }
         },
         sass: {
             dist: {
                 files: {
-                    '_ui/css/compiled.css': '_ui/sass/main.scss'
+                    '_frontend/css/compiled.css': '_frontend/sass/main.scss'
                 }
             },
             dev: {
@@ -41,24 +41,24 @@ module.exports = function (grunt) {
                     debugInfo: true
                 },
                 files: {
-                    '_ui/css/compiled.debug.css': '_ui/sass/main.scss'
+                    '_frontend/css/compiled.debug.css': '_frontend/sass/main.scss'
                 }
             }
         },
         cssmin: {
             compress: {
                 files: {
-                    "_ui/css/compiled.css": ["_ui/css/compiled.css"]
+                    "_frontend/css/compiled.css": ["_frontend/css/compiled.css"]
                 }
             }
         },
         watch: {
             js: {
-                files: ['_ui/js/**/*.js', '!_ui/js/compiled.js'],
+                files: ['_frontend/js/**/*.js', '!_frontend/js/compiled.js'],
                 tasks: ['uglify']
             },
             sass: {
-                files: ['_ui/sass/**/*.scss'],
+                files: ['_frontend/sass/**/*.scss'],
                 tasks: ['sass:dev']
             }
         }
