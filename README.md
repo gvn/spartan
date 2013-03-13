@@ -1,8 +1,10 @@
-# Build Template
+# Spartan
 
-Über-light scaffold for client side web applications. 
+Über-light scaffold for single page apps.
 
 Targeted toward modern browsers: Chrome, Firefox, Safari, IE10.
+
+Mildly opinionated transpilation: Sass + Jade -> CSS + HTML
 
 Powered by [Grunt.js](http://gruntjs.com)
 
@@ -10,9 +12,9 @@ Powered by [Grunt.js](http://gruntjs.com)
 
 - npm
 - ruby
-- grunt-cli  
+- grunt-cli
 `npm install -g grunt-cli`
-- sass gem  
+- sass gem
 `gem install sass`
 
 ## Setup:
