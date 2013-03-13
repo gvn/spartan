@@ -5,10 +5,12 @@
 
     Dependencies:
 
-    - npm
-    - grunt-cli > npm install -g grunt-cli
-    - ruby
-    - sass gem > gem install sass
+    + npm
+    + grunt-cli
+        > npm install -g grunt-cli
+    + ruby
+    + sass gem
+        > gem install sass
 
     Setup:
 
@@ -61,13 +63,11 @@ module.exports = function (grunt) {
                     client: true,
                     namespace: '<%= pkg.namespace %>.templates',
                     processName: function (filename) {
-                        // Create JS kosher template names from filename & path
-                        // IE: _fe/jade/cool.jade -> cool
-                        filename = filename.match(/\/[a-zA-Z\-\.0-9]*(?=\.jade)/)[0].slice(1);
+                        // Remove filepath and extension (_fe/jade/cool.jade -> cool)
+                        filename = filename.match(/\/[a-zA-Z\-\.0-9]*(?=\.jade)/)[0].slice(1).toLowerCase();
 
-                        // Remove . and - characters
-                        // TODO: camelCase transform instead of blunt character removal
-                        return filename.replace(/[\-\.]/g, '');
+                        // Remove . and - characters and convert to camelCase
+                        return filename.replace(/[\-\.]([a-z])/g, function (g) { return g[1].toUpperCase(); });
                     }
                 },
                 files: {

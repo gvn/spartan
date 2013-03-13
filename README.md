@@ -19,9 +19,9 @@ Powered by [Grunt.js](http://gruntjs.com)
 
 ## Setup
 
-1. Install any dependencies listed above that you are missing.
-2. Run `npm install` in project root.
-3. Profit.
+1. Install any dependencies that you're missing.
+2. Run `npm install` at project root.
+3. Profit!
 
 ## Bash Function
 
