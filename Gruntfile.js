@@ -4,7 +4,7 @@
 /*
 
     Dependencies:
-    
+
     - npm
     - grunt-cli > npm install -g grunt-cli
     - ruby
@@ -26,13 +26,13 @@ module.exports = function (grunt) {
             },
             build: {
                 src: ['_fe/js/main.js'],
-                dest: '_fe/js/compiled.js'
+                dest: '_fe/compiled/app.min.js'
             }
         },
         sass: {
             dist: {
                 files: {
-                    '_fe/css/compiled.css': '_fe/sass/main.scss'
+                    '_fe/compiled/app.css': '_fe/sass/main.scss'
                 }
             },
             dev: {
@@ -41,25 +41,48 @@ module.exports = function (grunt) {
                     debugInfo: true
                 },
                 files: {
-                    '_fe/css/compiled.debug.css': '_fe/sass/main.scss'
+                    '_fe/compiled/app.debug.css': '_fe/sass/main.scss'
                 }
             }
         },
         cssmin: {
             compress: {
                 files: {
-                    "_fe/css/compiled.css": ["_fe/css/compiled.css"]
+                    "_fe/compiled/app.css": ["_fe/compiled/app.css"]
+                }
+            }
+        },
+        jade: {
+            compile: {
+                options: {
+                    data: {
+                        debug: false
+                    },
+                    client: true,
+                    namespace: '<%= pkg.namespace %>.templates',
+                    processName: function (filename) {
+                        // Create JS kosher template names from filename & path
+                        // IE: _fe/jade/cool.jade -> cool
+                        filename = filename.match(/\/[a-zA-Z\-\.0-9]*(?=\.jade)/)[0].slice(1);
+
+                        // Remove . and - characters
+                        // TODO: camelCase transform instead of blunt character removal
+                        return filename.replace(/[\-\.]/g, '');
+                    }
+                },
+                files: {
+                    '_fe/js/<%= pkg.namespace.toLowerCase() %>.templates.js': ["_fe/jade/*.jade"]
                 }
             }
         },
         watch: {
-            js: {
-                files: ['_fe/js/**/*.js', '!_fe/js/compiled.js'],
-                tasks: ['uglify']
-            },
             sass: {
                 files: ['_fe/sass/**/*.scss'],
                 tasks: ['sass:dev']
+            },
+            jade: {
+                files: ['_fe/jade/**/*.jade'],
+                tasks: ['jade']
             }
         },
         connect: {
@@ -76,8 +99,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-jade');
 
     grunt.registerTask('default', ['connect', 'watch']);
-    grunt.registerTask('deploy', ['uglify', 'sass', 'cssmin']);
+    grunt.registerTask('deploy', ['jade', 'uglify', 'sass', 'cssmin']);
 
 };
