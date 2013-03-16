@@ -25,11 +25,8 @@ cd $projectName
 # Remove old bindings since this is a new project
 rm -rf .git
 
-# Give the Readme a header
+# Create a starter readme
 echo '#' $projectName > README.md
-
-# Initialize a new git project
-git init
 
 # Install all node_modules
 npm install
@@ -44,7 +41,7 @@ sed -i .bak "s/%NAMESPACE%/$namespace/g" package.json
 sed -i .bak "s/%AUTHOR%/$author/g" package.json
 rm package.json.bak
 
-# # Replace main.js tokens
+# Replace main.js tokens
 sed -i .bak "s/%PROJECT_NAME%/$projectName/g" _fe/js/namespace.main.js
 sed -i .bak "s/%AUTHOR%/$author/g" _fe/js/namespace.main.js
 sed -i .bak "s/%NAMESPACE%/$namespace/g" _fe/js/namespace.main.js
@@ -54,7 +51,10 @@ rm _fe/js/namespace.main.js.bak
 mv _fe/js/namespace.main.js _fe/js/$lowercaseNamespace.main.js
 
 # Remove installation shell script stored in master repo
-rm create.sh
+rm spartan.sh
+
+# Initialize a new git project
+git init
 
 # Commit the scaffold
 git add .
