@@ -1,16 +1,15 @@
-/*global $: false, console: false */
+/*global $: false, %NAMESPACE%: true, console: false */
 /*jslint browser: true, sloppy: true, forin: true, plusplus: true, maxerr: 50, indent: 4 */
 
 /*
 
-    NAMESPACE
+    %PROJECT_NAME%
     VERSION 0.0.1
-    AUTHOR X.X.
+    AUTHOR %AUTHOR%
 
     DEPENDENCIES:
 
-    - lib/
-    - namespace.*
+    - All
 
     TODO:
 
@@ -18,9 +17,9 @@
 
 */
 
-NAMESPACE = window.NAMESPACE || {};
+%NAMESPACE% = window.%NAMESPACE% || {};
 
-NAMESPACE.main = {
+%NAMESPACE%.main = {
     init: function () {
         var self = this;
 
@@ -29,5 +28,5 @@ NAMESPACE.main = {
 };
 
 $(document).ready(function () {
-    NAMESPACE.main.init();
+    %NAMESPACE%.main.init();
 });

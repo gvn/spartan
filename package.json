@@ -1,6 +1,7 @@
 {
-  "name": "PROJECT_NAME",
-  "namespace": "NAMESPACE",
+  "name": "%PROJECT_NAME%",
+  "namespace": "%NAMESPACE%",
+  "author": "%AUTHOR%",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.0",
