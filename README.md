@@ -2,11 +2,7 @@
 
 Über-light scaffold for single page apps.
 
-Targeted toward modern browsers: Chrome, Firefox, Safari, IE10.
-
-Mildly opinionated stack: Sass, Jade, jQuery.
-
-Powered by [Grunt.js](http://gruntjs.com)
+Mildly opinionated stack: **Grunt, Sass, Jade**
 
 ## Dependencies
 
@@ -34,7 +30,9 @@ Powered by [Grunt.js](http://gruntjs.com)
 
 ## Bash Function
 
-For even simpler project setup, add this function to your bashrc:
+For simpler project setup, we recommend adding this function to your bashrc.
+
+Afterward you can create a new project like so: `spartan PROJECTNAME`
 
 ```bash
 function spartan() {
