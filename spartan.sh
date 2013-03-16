@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # SPARTAN : Project Generator
 
@@ -16,11 +16,12 @@ read namespace
 namespace=${namespace:-APP}
 
 lowercaseNamespace="$(echo $namespace | tr '[:upper:]' '[:lower:]')"
+noSpaceProjectName="$(echo $projectName | tr -d ' ')"
 
 # Only pull the latest revision with no history
-git clone --depth=1 https://github.com/gvn/build-template.git $projectName
+git clone --depth=1 https://github.com/gvn/build-template.git $noSpaceProjectName
 
-cd $projectName
+cd $noSpaceProjectName
 
 # Remove old bindings since this is a new project
 rm -rf .git
@@ -28,15 +29,12 @@ rm -rf .git
 # Create a starter readme
 echo '#' $projectName > README.md
 
-# Install all node_modules
-npm install
-
 # Remove all .gitignores from subdirectories
 # Empty .gitignores are used to commit "empty" dirs
 find ./* -name .gitignore -type f -delete
 
 # Replace package.json tokens
-sed -i .bak "s/%PROJECT_NAME%/$projectName/g" package.json
+sed -i .bak "s/%PROJECT_NAME%/$noSpaceProjectName/g" package.json
 sed -i .bak "s/%NAMESPACE%/$namespace/g" package.json
 sed -i .bak "s/%AUTHOR%/$author/g" package.json
 rm package.json.bak
@@ -52,6 +50,9 @@ mv _fe/js/namespace.main.js _fe/js/$lowercaseNamespace.main.js
 
 # Remove installation shell script stored in master repo
 rm spartan.sh
+
+# Install all node_modules
+npm install
 
 # Initialize a new git project
 git init
