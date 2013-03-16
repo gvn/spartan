@@ -2,7 +2,7 @@
 
 Über-light scaffold for single page apps.
 
-Mildly opinionated stack: **Grunt, Sass, Jade, jQuery**
+Mildly opinionated stack: **Grunt, Sass, Jade**
 
 ## Dependencies
 
