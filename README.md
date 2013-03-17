@@ -8,9 +8,9 @@ Mildly opinionated stack: **Grunt, Sass, Jade**
 
 - npm
 - ruby
-- grunt-cli
+- grunt-cli  
 `npm install -g grunt-cli`
-- sass gem
+- sass gem  
 `gem install sass`
 
 ## Setup
@@ -30,5 +30,5 @@ Mildly opinionated stack: **Grunt, Sass, Jade**
 - `grunt`
   - Watch process recompiles Sass and Jade when the files change.
   - Web server runs at [http://localhost:8000](http://localhost:8000)
-- `grunt deploy` **Incomplete**
+- `grunt deploy` *Coming Soon!*
   - Create a deployable package for production with minified code.
