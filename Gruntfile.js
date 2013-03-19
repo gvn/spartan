@@ -118,6 +118,11 @@ module.exports = function (grunt) {
             index: {
                 files: ['index.jade'],
                 tasks: ['jade:createDevIndex', 'jade:createDistIndex']
+            },
+            // Assume that "scripts" may have changed, thus indexes need recompilation to include changes
+            gruntfile: {
+                files: ['Gruntfile.js'],
+                tasks: ['jade:createDevIndex', 'jade:createDistIndex']
             }
         },
         connect: {
