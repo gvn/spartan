@@ -19,12 +19,13 @@
 */
 
 module.exports = function (grunt) {
+    var pkg = grunt.file.readJSON('package.json'),
+        scripts;
 
     // Scripts to uglify and include (in load-order)
-    // TODO : Support wildcards
     // TODO : CDN script(s) programatically generated w. fallbacks (?)
-    var scripts = ['_fe/js/lib/jade.runtime.min.js',
-                   '_fe/js/<%= pkg.namespace.toLowerCase() %>.main.js'];
+    scripts = grunt.file.expand('_fe/js/lib/jade.runtime.min.js',
+                                '_fe/js/' + pkg.namespace.toLowerCase() + '.*.js');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -119,9 +120,8 @@ module.exports = function (grunt) {
                 files: ['index.jade'],
                 tasks: ['jade:createDevIndex', 'jade:createDistIndex']
             },
-            // Assume that "scripts" may have changed, thus indexes need recompilation to include changes
-            gruntfile: {
-                files: ['Gruntfile.js'],
+            js: {
+                files: ['_fe/js/**/*.js'],
                 tasks: ['jade:createDevIndex', 'jade:createDistIndex']
             }
         },
