@@ -54,6 +54,9 @@ rm spartan.sh
 # Install all node_modules
 npm install
 
+# Run Jade task to create indexes
+grunt jade
+
 # Initialize a new git project
 git init
 
