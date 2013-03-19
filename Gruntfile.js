@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     // TODO : Support wildcards
     // TODO : CDN script(s) programatically generated w. fallbacks (?)
     var scripts = ['_fe/js/lib/jade.runtime.min.js',
-                   '_fe/js/<%= pkg.namespace %>.main.js'];
+                   '_fe/js/<%= pkg.namespace.toLowerCase() %>.main.js'];
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
