@@ -20,6 +20,12 @@
 
 module.exports = function (grunt) {
 
+    // Scripts to uglify and include (in load-order)
+    // TODO : Support wildcards
+    // TODO : CDN script(s) programatically generated w. fallbacks (?)
+    var scripts = ['_fe/js/lib/jade.runtime.min.js',
+                   '_fe/js/<%= pkg.namespace %>.main.js'];
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
@@ -27,7 +33,7 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
             },
             build: {
-                src: ['_fe/js/main.js'],
+                src: scripts,
                 dest: '_fe/compiled/app.min.js'
             }
         },
@@ -50,12 +56,12 @@ module.exports = function (grunt) {
         cssmin: {
             compress: {
                 files: {
-                    "_fe/compiled/app.css": ["_fe/compiled/app.css"]
+                    "_fe/compiled/app.min.css": ["_fe/compiled/app.css"]
                 }
             }
         },
         jade: {
-            compile: {
+            compileJSTemplates: {
                 options: {
                     data: {
                         debug: false
@@ -73,6 +79,31 @@ module.exports = function (grunt) {
                 files: {
                     '_fe/js/<%= pkg.namespace.toLowerCase() %>.templates.js': ["_fe/jade/*.jade"]
                 }
+            },
+            createDistIndex: {
+                options: {
+                    pretty: true,
+                    data: {
+                        title: '<%= pkg.name %>',
+                        scripts: ['_fe/compiled/app.min.js']
+                    }
+                },
+                files: {
+                    'index.html': 'index.jade'
+                }
+            },
+            createDevIndex: {
+                options: {
+                    pretty: true,
+                    data: {
+                        title: 'DEV: <%= pkg.name %>',
+                        dev: true,
+                        scripts: scripts
+                    }
+                },
+                files: {
+                    'index.dev.html': 'index.jade'
+                }
             }
         },
         watch: {
@@ -82,7 +113,11 @@ module.exports = function (grunt) {
             },
             jade: {
                 files: ['_fe/jade/**/*.jade'],
-                tasks: ['jade']
+                tasks: ['jade:compileJSTemplates']
+            },
+            index: {
+                files: ['index.jade'],
+                tasks: ['jade:createDevIndex', 'jade:createDistIndex']
             }
         },
         connect: {
@@ -101,7 +136,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jade');
 
-    grunt.registerTask('default', ['connect', 'watch']);
+    grunt.registerTask('default', ['sass:dev', 'jade', 'connect', 'watch']);
     grunt.registerTask('deploy', ['jade', 'uglify', 'sass', 'cssmin']);
 
 };
