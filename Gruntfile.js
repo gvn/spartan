@@ -23,9 +23,8 @@ module.exports = function (grunt) {
         scripts;
 
     // Scripts to uglify and include (in load-order)
-    // TODO : CDN script(s) programatically generated w. fallbacks (?)
-    scripts = grunt.file.expand('_fe/js/lib/jade.runtime.min.js',
-                                '_fe/js/' + pkg.namespace.toLowerCase() + '.*.js');
+    scripts = grunt.file.expand('_fe/js/lib/*.js',
+                                '_fe/js/' + pkg.namespace.toLowerCase() + '.*.js'); // All namespace prefixed JS files
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -141,7 +140,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jade');
 
+    // Recompile Jade and Sass as needed
     grunt.registerTask('default', ['sass:dev', 'jade', 'connect', 'watch']);
-    grunt.registerTask('deploy', ['jade', 'uglify', 'sass', 'cssmin']);
+
+    // Compile Jade, Sass and JS
+    grunt.registerTask('build', ['sass', 'cssmin', 'jade', 'uglify']);
 
 };
