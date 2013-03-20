@@ -2,23 +2,34 @@
 
 Über-light scaffold for single page apps.
 
-Mildly opinionated stack: **Grunt, Sass, Jade**
 
-## Dependencies
+## Features
 
-- npm
-- ruby
-- grunt-cli
-`npm install -g grunt-cli`
-- sass gem
-`gem install sass`
+- **Fast setup.** Create a new project quickly and easily with the Spartan CLI.
+- **Small footprint.** Spend time building instead of tearing out unused code.
+- **Little to no HTML.** Write clean and simple markup with Jade.
+- **Auto-included JS.** New JavaScript files are automatically included. Don't waste time revising your index!
+- **Auto-compilation.** As your files change they are automatically recompiled.
+- **Optimized packaging.** All JS and CSS is minified for final distribution.
 
 ## Setup
 
-1. Install any dependencies that you're missing.
+1. Install any of the following dependencies that you're missing:
+    * npm
+    * ruby
+    * grunt-cli
+    `npm install -g grunt-cli`
+    * sass gem
+    `gem install sass`
+
 2. Install Spartan
   `curl https://raw.github.com/gvn/build-template/master/spartan.sh > ~/bin/spartan; chmod +x ~/bin/spartan`
 3. Profit!
+
+### Dependencies
+
+
+
 
 ## Commands
 
