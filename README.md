@@ -8,9 +8,10 @@
 - **Fast setup.** Create a new project quickly and easily with the Spartan CLI.
 - **Small footprint.** Spend time building instead of tearing out unused code.
 - **Little to no HTML.** Write clean and simple markup with Jade.
+- **Sass enabled.** Because vanilla CSS is gross.
 - **Auto-included JS.** New JavaScript files are automatically included. Don't waste time revising your index!
 - **Auto-compilation.** As your files change they are automatically recompiled.
-- **Optimized packaging.** All JS and CSS is minified for final distribution.
+- **HTTP friendly.** All JS and CSS is minified and concatenated for final distribution.
 
 ## Setup
 
@@ -25,11 +26,6 @@
 2. Install Spartan
   `curl https://raw.github.com/gvn/build-template/master/spartan.sh > ~/bin/spartan; chmod +x ~/bin/spartan`
 3. Profit!
-
-### Dependencies
-
-
-
 
 ## Commands
 
