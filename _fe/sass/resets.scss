@@ -1,72 +1,67 @@
-body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
+* {
     padding: 0;
     margin: 0;
+}
+
+// Display in IE6-9 and FF3
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+    display: block;
 }
 
 body {
     background: #fff;
     color: #000;
-    font-size: 10px;
+    font-size: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 { font-weight: 900; }
+// TYPOGRAPHY -----------------------------------------------------------------
+
+h1,h2,h3,h4,h5,h6 { 
+    font-weight: 900;
+    line-height: 1.33em;
+}
 
 h1 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 3em;
 }
 
 h2 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 2.66em;
 }
 
 h3 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 2em;
 }
 
 h4 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 1.66em;
 }
 
 h5 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 1.33em;
 }
 
 h6 {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 1em;
 }
 
 p {
-    font-size: 10px;
-    line-height: 1em;
+    font-size: 1.2em;
+    line-height: 1.33em;
 }
 
-address,caption,cite,code,dfn,th,var {
-    font-style: normal;
-    font-weight: normal;
-}
-
-ul,ol {
+ul, ol {
     list-style: none;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-abbr, img {
-    border: 0;
 }
 
 strong {
@@ -77,11 +72,23 @@ em {
     font-style: italic;
 }
 
-table {
-    border-collapse: collapse;
+// OTHER ----------------------------------------------------------------------
+
+a {
+    color: #000;
+    text-decoration: none;
 }
 
-caption, th, td {
-    text-align: left;
-    font-weight: normal;
+a:hover,
+a:active {
+    text-decoration: underline;
+    outline: 0;
+}
+
+img {
+    border: 0;
+
+    // Responsive
+    max-width: 100%; 
+    height: auto;
 }
