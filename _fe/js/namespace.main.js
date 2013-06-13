@@ -1,6 +1,3 @@
-/*global $: false, %NAMESPACE%: true, console: false */
-/*jslint browser: true, sloppy: true, forin: true, plusplus: true, maxerr: 50, indent: 4 */
-
 /*
 
     %PROJECT_NAME%
@@ -27,6 +24,4 @@
     }
 };
 
-$(document).ready(function () {
-    %NAMESPACE%.main.init();
-});
+%NAMESPACE%.main.init();

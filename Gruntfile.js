@@ -1,6 +1,3 @@
-/*global module: false */
-/*jslint browser: false, sloppy: true, forin: true, plusplus: true, maxerr: 50, indent: 4 */
-
 /*
 
     Dependencies:
@@ -63,9 +60,7 @@ module.exports = function (grunt) {
         jade: {
             compileJSTemplates: {
                 options: {
-                    data: {
-                        debug: false
-                    },
+                    compileDebug: false,
                     client: true,
                     namespace: '<%= pkg.namespace %>.templates',
                     processName: function (filename) {
@@ -77,7 +72,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '_fe/js/<%= pkg.namespace.toLowerCase() %>.templates.js': ["_fe/jade/*.jade"]
+                    '_fe/js/<%= pkg.namespace.toLowerCase() %>.templates.js': ["_fe/jade/**/*.jade"]
                 }
             },
             createDistIndex: {
