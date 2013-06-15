@@ -12,6 +12,7 @@
 - **Auto-included JS.** New JavaScript files are automatically included. Don't waste time revising your index!
 - **Auto-compilation.** As your files change they are automatically recompiled.
 - **HTTP friendly.** All JS and CSS is minified and concatenated for final distribution.
+- **Designer Friendly.** Includes a starter style guide with common elements.
 
 ## Setup
 
