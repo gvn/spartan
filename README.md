@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/gvn/build-template.png)](https://gemnasium.com/gvn/build-template)
+
 # Spartan
 
 Über-light scaffold for single page apps.
