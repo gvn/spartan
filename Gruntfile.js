@@ -3,11 +3,7 @@
     Dependencies:
 
     + npm
-    + grunt-cli
-        > npm install -g grunt-cli
-    + ruby
-    + sass gem
-        > gem install sass
+    + grunt-cli ( > npm install -g grunt-cli )
 
     Setup:
 
@@ -16,129 +12,106 @@
 */
 
 module.exports = function (grunt) {
-    var pkg = grunt.file.readJSON('package.json'),
-        scripts;
+  require('time-grunt')(grunt);
 
-    // Scripts to uglify and include (in load-order)
-    scripts = grunt.file.expand('_fe/js/lib/*.js',
-                                '_fe/js/' + pkg.namespace.toLowerCase() + '.*.js'); // All namespace prefixed JS files
-
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
-            },
-            build: {
-                src: scripts,
-                dest: '_fe/compiled/app.min.js'
-            }
+  grunt.initConfig({
+    less: {
+      development: {
+        options: {
+          sourceMap: true,
+          sourceMapFilename: 'app.debug.map',
+          sourceMapBasepath: '_fe/compiled/',
+          sourceMapRootpath: '/'
         },
-        sass: {
-            dist: {
-                files: {
-                    '_fe/compiled/app.css': '_fe/sass/main.scss'
-                }
-            },
-            dev: {
-                options: {
-                    style: 'expanded',
-                    debugInfo: true
-                },
-                files: {
-                    '_fe/compiled/app.debug.css': '_fe/sass/main.scss'
-                }
-            }
-        },
-        cssmin: {
-            compress: {
-                files: {
-                    "_fe/compiled/app.min.css": ["_fe/compiled/app.css"]
-                }
-            }
-        },
-        jade: {
-            compileJSTemplates: {
-                options: {
-                    compileDebug: false,
-                    client: true,
-                    namespace: '<%= pkg.namespace %>.templates',
-                    processName: function (filename) {
-                        // Remove filepath and extension (_fe/jade/cool.jade -> cool)
-                        filename = filename.match(/\/[a-zA-Z\-\.0-9]*(?=\.jade)/)[0].slice(1).toLowerCase();
-
-                        // Remove . and - characters and convert to camelCase
-                        return filename.replace(/[\-\.]([a-z])/g, function (g) { return g[1].toUpperCase(); });
-                    }
-                },
-                files: {
-                    '_fe/js/<%= pkg.namespace.toLowerCase() %>.templates.js': ["_fe/jade/**/*.jade"]
-                }
-            },
-            createDistIndex: {
-                options: {
-                    pretty: true,
-                    data: {
-                        title: '<%= pkg.name %>',
-                        scripts: ['_fe/compiled/app.min.js']
-                    }
-                },
-                files: {
-                    'index.html': 'index.jade'
-                }
-            },
-            createDevIndex: {
-                options: {
-                    pretty: true,
-                    data: {
-                        title: 'DEV: <%= pkg.name %>',
-                        dev: true,
-                        scripts: scripts
-                    }
-                },
-                files: {
-                    'index.dev.html': 'index.jade'
-                }
-            }
-        },
-        watch: {
-            sass: {
-                files: ['_fe/sass/**/*.scss'],
-                tasks: ['sass:dev']
-            },
-            jade: {
-                files: ['_fe/jade/**/*.jade'],
-                tasks: ['jade:compileJSTemplates']
-            },
-            index: {
-                files: ['index.jade'],
-                tasks: ['jade:createDevIndex', 'jade:createDistIndex']
-            },
-            js: {
-                files: ['_fe/js/**/*.js'],
-                tasks: ['jade:createDevIndex', 'jade:createDistIndex']
-            }
-        },
-        connect: {
-            server: {
-                options: {
-                    port: 8000
-                }
-            }
+        files: {
+          '_fe/compiled/app.min.css': '_fe/less/main.less'
         }
-    });
+      }
+    },
+    jade: {
+      compileJSTemplates: {
+        options: {
+          amd: true,
+          client: true,
+          compileDebug: false,
+          // Use only file name sans suffix: foo-bar.jade -> foo-bar
+          processName: function (filename) {
+            return filename.match(/\/([a-zA-Z0-9\-]*).jade$/)[1];
+          }
+        },
+        files: {
+          '_fe/compiled/jade-templates.js': ['_fe/jade/**/*.jade']
+        }
+      },
+      production: {
+        files: {
+          'index.html': 'index.jade'
+        }
+      },
+      development: {
+        files: {
+          'index.dev.html': 'index.jade'
+        }
+      }
+    },
+    watch: {
+      less: {
+        files: ['_fe/less/**/*.less'],
+        tasks: ['less:development']
+      },
+      jade: {
+        files: ['_fe/jade/**/*.jade'],
+        tasks: ['jade:compileJSTemplates']
+      },
+      index: {
+        files: ['index.jade'],
+        tasks: ['jade:development', 'jade:production']
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8000
+        }
+      }
+    },
+    jshint: {
+      all: ['Gruntfile.js', '_fe/js/*.js'],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
+    jsbeautifier: {
+      modify: {
+        src: ['Gruntfile.js', '_fe/js/**/*.js'],
+        options: {
+          config: '.jsbeautifyrc'
+        }
+      },
+      verify: {
+        src: ['Gruntfile.js', '_fe/js/**/*.js'],
+        options: {
+          mode: 'VERIFY_ONLY',
+          config: '.jsbeautifyrc'
+        }
+      }
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-jsbeautifier');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
-    // Recompile Jade and Sass as needed
-    grunt.registerTask('default', ['sass:dev', 'jade', 'connect', 'watch']);
+  // Recompile Jade and Sass as needed
+  grunt.registerTask('default', ['less', 'jade', 'connect', 'watch']);
 
-    // Compile Jade, Sass and JS
-    grunt.registerTask('build', ['sass', 'cssmin', 'jade', 'uglify']);
+  // Compile Jade, Sass and JS
+  grunt.registerTask('build', ['jshint', 'less', 'cssmin', 'jade']);
+
+  // Verify code before a commit
+  grunt.registerTask('clean', ['jsbeautifier:modify', 'jshint']);
 
 };

@@ -1,4 +1,7 @@
 .DS_Store
 node_modules
 TODO.txt
-.sass-cache
+index.html
+index.dev.html
+_fe/compiled/
+app.debug.map
