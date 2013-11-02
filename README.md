@@ -2,7 +2,7 @@
 
 # Spartan
 
-Über-light, slightly opinionated, scaffold for single page apps.
+Über-light, mildly opinionated, scaffold for single page apps.
 
 
 ## Features
@@ -30,7 +30,9 @@
 ## Grunt Tasks
 
 - `grunt`
-  - Watch process recompiles Sass and Jade when the files change.
+  - Watch process recompiles LESS and Jade as needed.
   - Web server runs at [http://localhost:8000](http://localhost:8000)
 - `grunt build`
-  - Compile Sass, Jade and JavaScript.
+  - Compile LESS, Jade and JavaScript.
+- `grunt clean`
+  - Beautify JS and validate with JSHint

@@ -5,3 +5,4 @@ index.html
 index.dev.html
 _fe/compiled/
 app.debug.map
+bower_components

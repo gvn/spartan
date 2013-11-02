@@ -2,7 +2,11 @@
   "name": "spartan",
   "author": "gvn",
   "version": "0.2.0",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/bower install"
+  },
   "devDependencies": {
+    "bower": "1.2.7",
     "grunt": "0.4.1",
     "grunt-contrib-connect": "0.5.0",
     "grunt-contrib-jade": "0.8.0",
