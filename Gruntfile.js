@@ -19,9 +19,8 @@ module.exports = function (grunt) {
       development: {
         options: {
           sourceMap: true,
-          sourceMapFilename: 'app.debug.map',
-          sourceMapBasepath: '_fe/compiled/',
-          sourceMapRootpath: '/'
+          sourceMapFilename: '_fe/compiled/less.debug.map',
+          sourceMapRootpath: '../../'
         },
         files: {
           '_fe/compiled/app.min.css': '_fe/less/main.less'
@@ -31,12 +30,11 @@ module.exports = function (grunt) {
     jade: {
       compileJSTemplates: {
         options: {
-          amd: true,
           client: true,
           compileDebug: false,
-          // Use only file name sans suffix: foo-bar.jade -> foo-bar
+          // Trims before _fe/jade/ to give template names like "foo" and "bar/foo"
           processName: function (filename) {
-            return filename.match(/\/([a-zA-Z0-9\-]*).jade$/)[1];
+            return filename.match(/(?:_fe\/jade\/)(.*)(?:.jade$)/)[1];
           }
         },
         files: {
@@ -61,17 +59,22 @@ module.exports = function (grunt) {
       },
       jade: {
         files: ['_fe/jade/**/*.jade'],
-        tasks: ['jade:compileJSTemplates']
+        tasks: ['jade:compileJSTemplates', 'browserify']
       },
       index: {
         files: ['index.jade'],
         tasks: ['jade:development', 'jade:production']
+      },
+      js: {
+        files: ['_fe/js/**/*.js'],
+        tasks: ['browserify']
       }
     },
     connect: {
       server: {
         options: {
-          port: 8000
+          port: 1337,
+          open: true
         }
       }
     },
@@ -95,9 +98,30 @@ module.exports = function (grunt) {
           config: '.jsbeautifyrc'
         }
       }
+    },
+    browserify: {
+      main: {
+        files: {
+          '_fe/compiled/app.compiled.js': ['_fe/js/app.js']
+        },
+        options: {
+          debug: true,
+          shim: {
+            jadeTemplates: {
+              path: '_fe/compiled/jade-templates.js',
+              exports: 'JST'
+            },
+            jquery: {
+              path: './bower_components/jquery/jquery.js',
+              exports: '$'
+            }
+          }
+        }
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-jsbeautifier');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -106,12 +130,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
 
   // Recompile Jade and Sass as needed
-  grunt.registerTask('default', ['less', 'jade', 'connect', 'watch']);
+  grunt.registerTask('default', ['less', 'jade', 'browserify', 'connect', 'watch']);
 
   // Compile Jade, Sass and JS
-  grunt.registerTask('build', ['jshint', 'less', 'cssmin', 'jade']);
+  grunt.registerTask('build', ['jshint', 'less', 'jade', 'browserify']);
 
-  // Verify code before a commit
+  // Clean code before a commit
   grunt.registerTask('clean', ['jsbeautifier:modify', 'jshint']);
 
 };
