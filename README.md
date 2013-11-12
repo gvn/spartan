@@ -1,4 +1,4 @@
-[![Dependency Status](https://gemnasium.com/gvn/build-template.png)](https://gemnasium.com/gvn/build-template)
+[![Dependency Status](https://gemnasium.com/gvn/spartan.png)](https://gemnasium.com/gvn/spartan)
 
 # Spartan
 
